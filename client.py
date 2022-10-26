@@ -4,7 +4,6 @@ import socket
 #8001
 sock = socket.socket()
 print ("Socket successfully created")
-
 server = sys.argv[1]
 port = int(sys.argv[2])
 #logFile = sys.argv[3]
