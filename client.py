@@ -1,23 +1,24 @@
-# Import sys module
 import sys
 import socket
-
+#34.125.218.135
+#8001
 sock = socket.socket()
 print ("Socket successfully created")
 
-server = str(sys.argv[1])
-port = sys.argv[2]
+server = sys.argv[1]
+port = int(sys.argv[2])
+#logFile = sys.argv[3]
 print('This is the server input:', server )
 print('This is the port input:', port )
-#logFile = sys.argv[3]
 
-client=server
- 
 sock.connect((server, port))  
-#print ("socket binded to %s" %(port)) 
-client=server
-     
- #message from user
-client.send('Thank you for the Network message'.encode())
-print (sock.recv(1024).decode())
-client.close()
+
+print("Please enter the message for the server. HINT: Please include the word 'Network'")
+clientMessage= input() 
+#print(clientMessage)  
+#message from user
+sock.send(clientMessage.encode())
+serverMessage= sock.recv(1024).decode()
+print (serverMessage)
+sock.close()
+print("Socket Closed")
