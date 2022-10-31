@@ -1,1 +1,13 @@
 
+Client: Network
+Server: Hello there ('149.149.2.201', 22675). Here is another random quote of wisdom for you:Miracles happen to those who believe in them.
+
+
+Client: Hello Network
+Server: Hello there ('149.149.2.201', 16722). Here is another random quote of wisdom for you:It is almost always possible to be honest and positive.
+
+
+Client: Please give a message Network
+Server: Hello there ('149.149.2.201', 43693). Here is another random quote of wisdom for you:Miracles happen to those who believe in them.
+
+
