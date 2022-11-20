@@ -13,12 +13,20 @@ sock.bind(('', port))
 sock.listen(5)
 print("this sock be listening")
 
+logFile = open(logFileName, "a")
+
 #Read in the quote text file(?)
 
 while True:
     client, address = sock.accept()
     print("Got an address: ", address)
+
     clientMessage= sock.recv(1024).decode()
-    client.send("thanks for connecting")
+    logFile.write('Client: '+ clientMessage +'\n')
+
+    serverMessage = "Thanks for connecting"
+    client.send(serverMessage)
+    logFile.write('Server: '+ serverMessage +'\n')
+    
     client.close()
     break
