@@ -1,7 +1,8 @@
 import socket
 import sys
-
-
+import random
+# python3 server.py 8001 serverLogFile.txt
+#tcpdump -i ens4 dst 35.225.41.220 -w project2.pcap -c 20
 port = int(sys.argv[1])
 logFileName = sys.argv[2]
 
@@ -15,18 +16,21 @@ print("this sock be listening")
 
 logFile = open(logFileName, "a")
 
-#Read in the quote text file(?)
-
 while True:
     client, address = sock.accept()
     print("Got an address: ", address)
 
-    clientMessage= sock.recv(1024).decode()
+    clientMessage= str(client.recv(1024))
+    print(clientMessage)
     logFile.write('Client: '+ clientMessage +'\n')
 
-    serverMessage = "Thanks for connecting"
-    client.send(serverMessage)
+    serverMessage="Hello, here is a random quote for you: "
+    lines = open('quotes.txt').read().splitlines()
+    serverMessage = serverMessage + random.choice(lines)
+    client.send(serverMessage.encode())
     logFile.write('Server: '+ serverMessage +'\n')
-    
+
     client.close()
-    break
+    print("Client Closed")
+
+    

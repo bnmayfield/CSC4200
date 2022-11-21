@@ -1,8 +1,8 @@
 import sys
 import socket
-#35.222.239.52
+#35.225.41.220
 #8001
-# python3 client.py 35.222.239.52 8001 logFile.txt
+# python3 client.py 35.225.41.220 8001 logFile.txt
 sock = socket.socket()
 print ("Socket successfully created")
 server = sys.argv[1]
