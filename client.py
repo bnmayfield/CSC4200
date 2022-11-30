@@ -28,19 +28,39 @@ print('This is the server input:', server )
 print('This is the port input:', port )
 print('This is the log file name input:', logFileName)
 
-#logFile = open(logFileName, "a")
+logFile = open(logFileName, "a")
 
 sock.connect((server, port))  
 sock.sendall(packet_hello)
-#print("Please enter the message for the server. HINT: Please include the word 'Network'")
-#clientMessage= input() 
-#sock.send(clientMessage.encode())
-#logFile.write('Client: '+ clientMessage +'\n')
 
-#serverMessage= sock.recv(1024).decode()
-#print (serverMessage)
-#logFile.write('Server: '+ serverMessage +'\n')
+while True:
+    serverPacket= sock.recv(struct.calcsize('!III'))
+    version, message_type, length = struct.unpack('!III',serverPacket)
+    print("Packet Received: ",version, message_type, length)
+    #message= sock.recv(length).decode()
+    #print(message)
+    logFile.write('Server Packet (Version #, Message Type, Length): '+ str(version)+','+ str(message_type)+','+str(length)+'\n')
 
-#logFile.close()
-sock.close()
-print("Socket Closed")
+    if version != 17:
+        print("VERSION DENIED")
+        logFile.write('VERSION MISMATCH '+'\n')
+    else:
+        print("VERSION ACCEPTED")
+        logFile.write('VERSION ACCEPTED '+'\n')
+        message= sock.recv(length).decode()
+        print("Message:",message)
+        logFile.write('Message: '+message+'\n')
+
+
+    if message_type == 1:
+        print("SENDING COMMAND")
+        logFile.write('SENT COMMAND '+'\n')
+        sock.sendall(packet_command)
+    elif message_type ==2 and message == "SUCCESS":
+        print("COMMAND SUCESSFUL")
+        logFile.write('COMMAND WAS SUCCESSFUL '+'\n')
+        sock.close()
+        print("Socket Closed")
+        break
+
+logFile.close()
