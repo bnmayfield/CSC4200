@@ -3,7 +3,7 @@ import sys
 import struct
 
 # python3 server.py 8001 serverLogFile.txt
-#tcpdump -i ens4 dst 35.225.41.220 -w project2.pcap -c 20
+#tcpdump -i ens4 dst 34.28.255.197 -w project3.pcap -c 20
 
 #packet section
 h_message = 'Hello'

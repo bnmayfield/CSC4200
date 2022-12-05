@@ -5,7 +5,7 @@ import struct
 #8001
 
 #INSTANCE 2 SERVER
-# python3 client.py 34.173.101.159 8001 logFile.txt
+# python3 client.py 34.28.255.197 8001 logFile.txt
 
 #packet section
 h_message = 'Hello'
